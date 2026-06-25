@@ -1,0 +1,69 @@
+/* 使い方ページ — calender.css のテーマ・タイポグラフィを前提 */
+
+body { background: var(--surf); color: var(--tx); font-family: var(--font, "Noto Sans JP", sans-serif); transition: background 0.3s; }
+
+.how-page { width: 100%; max-width: 720px; margin: 0 auto; padding: 16px 16px 120px; background: transparent; color: inherit; font-family: inherit; min-height: calc(100vh - 100px); box-sizing: border-box; }
+
+.how-lead { font-size: 1.2rem; line-height: 1.75; color: var(--txs); margin-bottom: 24px; }
+
+.how-cta-top { display: flex; justify-content: center; margin: 24px 0 32px 0; }
+
+.how-cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 28px; border-radius: 10px; background: var(--tx); color: #fff; font-size: 1.4rem; font-weight: 700; text-decoration: none; box-shadow: 0 1px 4px rgba(3, 3, 3, 0.3); transition: opacity 0.15s; }
+
+.how-cta-btn:hover { opacity: 0.85; }
+
+.how-section {
+  margin-bottom: 16px; padding: 16px; background-color: var(--bg_base, #fff); border: 2px solid var(--bdr); border-radius: 8px; filter: drop-shadow(0 1px 3px rgba(3, 3, 3, 0.15)); width: 100%; box-sizing: border-box; }
+
+.how-section:last-of-type { margin-bottom: 0; }
+
+.how-section h2 { margin-bottom: 12px; font-size: 1.4rem; }
+
+.how-steps {  list-style: none; counter-reset: how-step; }
+
+.how-steps > li {
+  counter-increment: how-step; position: relative; padding-left: 2.8em; margin-bottom: 16px; font-size: 1.3rem; line-height: 1.7; color: var(--tx); word-break: normal; overflow-wrap: break-word; }
+
+.how-steps > li:last-child { margin-bottom: 0; }
+
+.how-steps > li::before { content: counter(how-step); position: absolute; left: 0; top: 0.1em; width: 1.8em; height: 1.8em; display: flex; align-items: center; justify-content: center; background: var(--acc); color: #fff; font-size: 1.1rem; font-weight: 700; border-radius: 50%; line-height: 1; }
+
+.how-steps strong { color: var(--tx); font-weight: 700; }
+.how-sublist { margin: 8px 0 0 0; padding-left: 1.2em; font-size: 1.2rem; color: var(--txs); line-height: 1.65; }
+.how-sublist li { margin-bottom: 4px; }
+.how-note { margin-top: 12px; padding: 10px 12px; background: var(--surf); border-radius: 8px; font-size: 1.2rem; line-height: 1.65; color: var(--txs); }
+.how-note b { color: var(--tx); }
+
+.how-mark-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; font-size: 1.4rem; }
+
+.how-chip-sample { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 1.1rem; border: 1.5px solid var(--bdr); background: #f5f5f3; color: var(--txs); }
+.how-flow { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; margin-bottom: 24px; list-style: none; }
+
+.how-flow-item { max-width: 90%; flex: 1 1 24rem; padding: 8px; text-align: center; background: var(--bg_base, #fff); border: 1.5px solid var(--bdr); border-radius: 8px; font-size: 1.1rem; line-height: 1; color: var(--tx); position: relative; margin: 0 calc(50% - 12rem); }
+.how-flow-item span{display: block; width: 9em; margin: 0 auto; text-align: left;}
+
+.how-flow-item::before{ content: "↓"; margin: 0; position: absolute; right: calc(50% - 0.5em); bottom:-1em; font-size: 2rem; z-index: 1; }
+.how-flow-item:last-child:before{display: none;}
+
+.how-flow-item em { display: inline-block; font-style: normal; font-size: 1.4rem; font-weight: 700; color: var(--acc); margin-right: 0.5em; }
+
+.how-header-sub { width: 100%; text-align: center; font-size: 1.2rem; color: var(--txs); margin: 4px 16px 0; }
+.how-back { display: inline-block; margin-top: 8px; font-size: 1.2rem; color: var(--acc); text-decoration: none; }
+
+.how-back:hover { text-decoration: underline; }
+footer .how-footer-link { display: block; width: 100%; text-align: center; font-size: 1.2rem; margin: 8px 0; }
+
+footer .how-footer-link a { color: var(--acc); text-decoration: none; }
+
+footer .how-footer-link a:hover { text-decoration: underline; }
+
+@media screen and (min-width: 780px) {
+  .how-page { max-width: 720px; padding: 24px 32px 80px; }
+  header { height: auto; min-height: 80px; padding-top: 24px; align-items: center; }
+  h1 { font-size: 2rem; }
+  .how-flow-item { flex: 1 1 140px; max-width: 160px; padding: 8px; line-height: 1.4; margin: 0; }
+   .how-flow-item span{display:inline; width: auto; margin: 0; text-align: center;}
+  .how-flow-item::before{ content: "→"; margin: 0; position: absolute; right: -1.5rem; top: calc(0.5em - 5px); bottom:auto; font-size: 3rem; z-index: 1; }
+  .how-flow-item em { display: block; margin-bottom: 4px; font-size: 1.8rem; margin-right: 0; }
+
+}

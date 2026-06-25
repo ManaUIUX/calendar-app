@@ -1,0 +1,171 @@
+/* ご利用にあたって — calender.css のテーマ・タイポグラフィを前提 */
+
+body {
+  background: var(--surf);
+  color: var(--tx);
+  font-family: var(--font, "Noto Sans JP", sans-serif);
+  transition: background 0.3s;
+}
+
+.guide-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 16px 120px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+}
+
+.guide-lead {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--tx);
+  margin-bottom: 8px;
+}
+
+.guide-lead-note {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: var(--txs);
+  margin-bottom: 24px;
+}
+
+.guide-cta-top {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 32px;
+}
+
+.guide-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 10px;
+  background: var(--tx);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(3, 3, 3, 0.3);
+  transition: opacity 0.15s;
+}
+
+.guide-cta-btn:hover {
+  opacity: 0.85;
+}
+
+.guide-section {
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: var(--bg_base, #fff);
+  border: 2px solid var(--bdr);
+  border-radius: 8px;
+  filter: drop-shadow(0 1px 3px rgba(3, 3, 3, 0.15));
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.guide-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.guide-section h2 {font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.guide-section p {
+  font-size: 1.3rem;
+  line-height: 1.75;
+  color: var(--tx);
+  margin-bottom: 12px;
+}
+
+.guide-section p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-list {
+  margin: 8px 0 0;
+  padding-left: 1.4em;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--txs);
+}
+
+.guide-list li {
+  margin-bottom: 6px;
+}
+
+.guide-list li:last-child {
+  margin-bottom: 0;
+}
+
+.guide-note {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--surf);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--txs);
+}
+
+.guide-contact a {
+  color: var(--acc);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.guide-contact a:hover {
+  text-decoration: underline;
+}
+
+.guide-header-sub {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--txs);
+  margin: 4px 16px 0;
+}
+
+.guide-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  width: 100%;
+  margin: 8px 0;
+  font-size: 1.2rem;
+}
+
+.guide-footer-nav a {
+  color: var(--acc);
+  text-decoration: none;
+}
+
+.guide-footer-nav a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 780px) {
+  .guide-page {
+    max-width: 720px;
+    padding: 24px 32px 80px;
+  }
+
+  header {
+    height: auto;
+    min-height: 80px;
+    padding-top: 24px;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}

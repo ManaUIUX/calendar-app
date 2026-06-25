@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Instagram用営業日カレンダーを秒速で作成｜店舗・教室向け無料Webアプリ
+    </title>
+
+    <meta
+      name="description"
+      content="店舗・お教室・イベント主催者向け。Instagram投稿用の営業日カレンダー画像を秒速で作成できる無料Webアプリです。ストーリーズ・フィード用サイズにも対応。印刷用データとしても利用できます。"
+    />
+
+    <meta
+      property="og:title"
+      content="Instagram用営業日カレンダーを秒速で作成｜店舗・教室向け無料Webアプリ"
+    />
+    <meta
+      property="og:description"
+      content="店舗・お教室・イベント主催者向け。Instagram投稿用の営業日カレンダー画像を秒速で作成できる無料Webアプリです。ストーリーズ・フィード用サイズにも対応。印刷用データとしても利用できます。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xxxxx.com/" />
+    <meta property="og:image" content="https://xxxxx.com/img/ogp-image.jpg" />
+
+    <meta
+      property="og:site_name"
+      content="Instagram用営業日カレンダーを秒速で作成｜店舗・教室向け無料Webアプリ"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Instagram用営業日カレンダーを秒速で作成｜店舗・教室向け無料Webアプリ"
+    />
+    <meta
+      name="twitter:description"
+      content="店舗・お教室・イベント主催者向け。Instagram投稿用の営業日カレンダー画像を秒速で作成できる無料Webアプリです。ストーリーズ・フィード用サイズにも対応。印刷用データとしても利用できます。"
+    />
+    <meta name="twitter:image" content="https://xxxxx.com/img/ogp-image.jpg" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <link rel="canonical" href="https://xxxxx.com/" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="css/calender.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "インスタ用営業日カレンダー作成アプリ",
+        "url": "https://xxxxx.com/",
+        "description": "店舗・お教室・イベント主催者向け。Instagram投稿用の営業日カレンダー画像を秒速で作成できる無料Webアプリです。ストーリーズ・フィード用サイズにも対応。印刷用データとしても利用できます。",
+        "applicationCategory": "Productivity",
+        "operatingSystem": "All",
+        "image": "https://xxxxx.com/img/ogp-image.jpg",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "JPY"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1><span>秒速で完成!</span>営業日カレンダー</h1>
+      <p class="current-sel">
+        <img
+          class="icon-pencil"
+          src="img/pencil.svg"
+          alt=""
+          width="24"
+          height="24"
+        />
+        選択されている入力内容：
+        <span class="sel-dot" id="selDot"></span>
+        <span id="selText">定休日</span>
+      </p>
+    </header>
+    <main class="app" id="app">
+      <div class="split_left">
+        <!-- CALENDAR -->
+        <div class="cal-wrap">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="changeMonth(-1)">
+              <img src="img/back.svg" alt="前月" />
+            </button>
+            <div class="cal-month" id="calMonth">
+              <span class="year">年</span>
+              <span class="month-num">月</span>
+              <span class="month-name">month name</span>
+            </div>
+            <button class="cal-nav-btn" onclick="changeMonth(1)">
+              <img src="img/next.svg" alt="次月" />
+            </button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="cal-footer" id="calFooter" hidden></div>
+      </div>
+      <div class="spit_right">
+        <section id="input_area01">
+          <p class="howbtn">
+            <span class="howbtn-icon">?</span
+            ><a href="how.html">使い方について</a>
+            <span class="howbtn-sep" aria-hidden="true">｜</span
+            ><span class="howbtn-icon">i</span>
+            <a href="guideline.html">ご利用にあたって</a>
+          </p>
+          <h2><span>入力内容</span>入力内容を確認後、日付をタップ</h2>
+          <!-- ITEM SELECTION -->
+          <article class="section">
+            <h3 class="sec-label">入力内容選択</h3>
+            <div class="chip-row" id="chipRow"></div>
+            <input
+              class="custom-input"
+              id="customInput"
+              type="text"
+              placeholder="表示するテキストを入力（最大6文字）"
+              maxlength="6"
+            />
+            <h3 class="sec-label marktype">マーク</h3>
+            <div class="mark-row" id="markRow"></div>
+            <h3 class="sec-label markcolor">マーク色</h3>
+            <div class="dot-row" id="dotRow"></div>
+          </article>
+        </section>
+        <section id="input_area02">
+          <h2><span>一括内容</span>曜日を選択後、「入力内容」を一括適用</h2>
+          <!-- BULK -->
+          <div class="bulk-section">
+            <div class="bulk-dow-row" id="bulkRow"></div>
+            <div class="bulk-actions">
+              <button class="bulk-apply-btn" onclick="applyBulk()">
+                ▶ 一括適用
+              </button>
+              <button class="bulk-clear-btn" onclick="clearBulk()">
+                ✕ 選択曜日をクリア
+              </button>
+            </div>
+          </div>
+        </section>
+        <section id="input_area03">
+          <h2><span>その他の設定</span></h2>
+          <!-- THEME -->
+          <div class="section">
+            <h3 class="sec-label">カレンダーの色</h3>
+            <div class="theme-row" id="themeRow"></div>
+          </div>
+
+          <!-- SIZE -->
+          <div class="section">
+            <h3 class="sec-label">生成する画像のサイズ</h3>
+            <div class="size-row">
+              <button
+                class="size-btn"
+                data-size="story"
+                onclick="setSize('story', this)"
+              >
+                ストーリー<br /><span style="font-size: 10px; opacity: 0.7"
+                  >1080×1920</span
+                >
+              </button>
+              <button
+                class="size-btn active"
+                data-size="feed"
+                onclick="setSize('feed', this)"
+              >
+                フィード縦<br /><span style="font-size: 10px; opacity: 0.7"
+                  >1080×1350</span
+                >
+              </button>
+              <button
+                class="size-btn"
+                data-size="sq"
+                onclick="setSize('sq', this)"
+              >
+                正方形<br /><span style="font-size: 10px; opacity: 0.7"
+                  >1080×1080</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <!-- LOGO -->
+          <div class="section">
+            <h3 class="sec-label">カレンダー下に表示したいテキストを入力</h3>
+            <div class="input-row">
+              <input
+                class="text-in"
+                id="logoText"
+                placeholder="1行目：店名など（30文字以内）"
+                maxlength="30"
+              />
+              <input
+                class="text-in"
+                id="logoText02"
+                placeholder="2行目：営業時間など（30文字以内）"
+                maxlength="30"
+              />
+              <input
+                class="text-in"
+                id="accountText"
+                placeholder="3行目：@アカウント名など（30文字以内）"
+                maxlength="30"
+              />
+            </div>
+          </div>
+
+          <!-- FONT -->
+          <div class="section">
+            <h3 class="sec-label">フォント設定</h3>
+            <select class="text-in" id="fontSel">
+              <option value="'Noto Sans JP',sans-serif">ゴシック体</option>
+              <option value="'Shippori Mincho',serif">明朝体</option>
+              <option value="Georgia,serif">英字（Georgia）</option>
+            </select>
+          </div>
+          <div class="section">
+            <h3 class="sec-label">データの引き継ぎ</h3>
+            <button class="restore-btn" onclick="restoreData()">
+              ▶ 前回データをカレンダーに反映
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <button class="print-btn" onclick="printCalendar()">印刷・PDF</button>
+      <button class="export-btn" onclick="exportImage()">画像生成</button>
+      <small
+        >&copy; 2026
+        <a href="https://www.instagram.com/mana_monozukuri/" target="_blank"
+          >@mana_monozukuri</a
+        >｜カレンダー生成アプリ</small
+      >
+    </footer>
+    <div class="print-area" id="printArea">
+      <img id="printImg" alt="カレンダー印刷用画像" />
+    </div>
+
+    <div class="modal-bg" id="modalBg">
+      <div class="modal">
+        <button
+          type="button"
+          class="modal-x"
+          aria-label="閉じる"
+          onclick="closeModal()"
+        >
+          ×
+        </button>
+        <h3>📸 画像生成完了！！</h3>
+        <canvas id="exportCanvas"></canvas>
+
+        <div class="modal-hint">
+          <b>📱 iPhone / iPad</b>：画像を<b>長押し</b>→「写真に保存」<br />
+          <b>🤖 Android</b>：画像を<b>長押し</b>→「画像をダウンロード」<br />
+          <b>💻 PC</b>：画像を<b>右クリック</b>→「名前を付けて画像を保存」
+        </div>
+        <button type="button" class="modal-close" onclick="closeModal()">
+          × 閉じる
+        </button>
+      </div>
+    </div>
+
+    <script src="js/theme.js" defer></script>
+    <script src="js/calender.js" defer></script>
+  </body>
+</html>
