@@ -11,6 +11,8 @@
 :root {
   --bg_base: #fff;
   --gradient-btn: linear-gradient( 180deg, #fff 38.46%, #d9d9d9 88.94%, #fff 99.04% );
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 html { font-size: 62.5%; }
@@ -28,15 +30,15 @@ h3 { margin: 0 0 8px 0; }
 .jn_mincho { font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", sans-serif; font-weight: 400; font-style: normal; }
 .en { font-family: "EB Garamond", "Noto Serif JP", "Hiragino Serif", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif; font-weight: normal; font-style: normal; }
 
-.app { max-width: 100%; min-height: 100vh; background: var(--surf); color: var(--tx); font-family: var(--font, "Noto Sans JP", sans-serif); transition: background 0.3s; padding: 16px clamp(0px, (100vw - 390px) * 999, calc(50% - 195px)); }
+.app { max-width: 100%; min-height: 100vh; background: var(--surf); color: var(--tx); font-family: var(--font, "Noto Sans JP", sans-serif); transition: background 0.3s; padding: 12px clamp(0px, (100vw - 390px) * 999, calc(50% - 195px)) calc(72px + var(--safe-bottom)); }
 .spit_right{filter: drop-shadow(0 1px 3px rgba(3,3,3,0.3));}
-header { padding: 44px clamp(0px, (100vw - 390px) * 999, calc(50% - 195px)) 8px; position: sticky; margin: 0 auto; height: 100px; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.8); display: flex; align-items: flex-end; justify-content: center; flex-wrap: wrap; box-sizing: border-box; border-bottom: 1px solid #ddd; }
+header { padding: calc(8px + var(--safe-top)) clamp(0px, (100vw - 390px) * 999, calc(50% - 195px)) 6px; position: sticky; margin: 0 auto; height: auto; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.8); display: flex; align-items: center; justify-content: center; flex-wrap: wrap; box-sizing: border-box; border-bottom: 1px solid #ddd; gap: 4px; }
 
 
-footer { padding: 0 clamp(0px, (100vw - 390px) * 999, calc(50% - 195px)) 0; position: sticky; margin: 0 auto; bottom: 0; z-index: 100; background: rgba(255, 255, 255, 0.8); display: flex; align-items: top; justify-content: center; flex-wrap: wrap; border-top: 1px solid #ddd; }
-footer small { display: block; width: 100%; padding-bottom: 34px; text-align: center; }
+footer { padding: 8px clamp(0px, (100vw - 390px) * 999, calc(50% - 195px)) calc(8px + var(--safe-bottom)); position: sticky; margin: 0 auto; bottom: 0; z-index: 100; background: rgba(255, 255, 255, 0.8); display: flex; align-items: top; justify-content: center; flex-wrap: wrap; border-top: 1px solid #ddd; }
+footer small { display: block; width: 100%; padding-bottom: 4px; text-align: center; }
 
-#input_area01 { margin: 16px 0 0 0; padding: 16px; background-color: var(--bg_base); border-bottom: 2px solid var(--bdr);  border-radius: 8px 8px 0 0;}
+#input_area01 { margin: 8px 0 0 0; padding: 16px; background-color: var(--bg_base); border-bottom: 2px solid var(--bdr);  border-radius: 8px 8px 0 0;}
 #input_area02, #input_area03 { margin: 0; padding: 16px; border-bottom: 2px solid var(--bdr); background-color: var(--bg_base); }
 #input_area03 .section { border-bottom: 2px solid #fff; }
 
@@ -52,7 +54,7 @@ footer small { display: block; width: 100%; padding-bottom: 34px; text-align: ce
 .markcolor { margin-top: 16px; }
 
 /* CURRENT SEL */
-.current-sel { width: 100%; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px; margin: 4px 16px; line-height: 1em;  }
+.current-sel { width: 100%; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px; margin: 0 8px; line-height: 1.2;  }
 .sel-dot { width: 1em; height: 1em; border-radius: 50%; flex-shrink: 0; }
 .icon-pencil { width: 2rem; height: 2rem; flex-shrink: 0; display: block; }
 
@@ -127,7 +129,7 @@ footer small { display: block; width: 100%; padding-bottom: 34px; text-align: ce
 .size-btn.active { background: var(--bdr); color: var(--tx); border-color: #fff; font-weight: 700; box-shadow: 1px 1px 4px rgba(3, 3, 3, 0.5); }
 .input-row { display: flex; flex-direction: column; gap: 8px; }
 .text-in { background: transparent; border: 1px solid var(--bdr); color: var(--tx); border-radius: 8px; padding: 7px 10px; font-size: 1.2rem; flex: 1; font-family: inherit; }
-.export-btn, .print-btn { display: block; width: 46%; margin: 8px auto; padding: 8px 12px; border-radius: 5px; background: var(--gradient-btn); color: #222222; border: 1.5px solid #fff; font-size: 1.4rem; font-weight: 700; cursor: pointer; font-family: inherit; text-align: center; transition: opacity 0.15s; box-shadow: 0 1px 4px rgba(3, 3, 3, 0.3); opacity: 1; position: relative; }
+.export-btn, .print-btn { display: block; width: 46%; margin: 4px auto; padding: 8px 12px; border-radius: 5px; background: var(--gradient-btn); color: #222222; border: 1.5px solid #fff; font-size: 1.4rem; font-weight: 700; cursor: pointer; font-family: inherit; text-align: center; transition: opacity 0.15s; box-shadow: 0 1px 4px rgba(3, 3, 3, 0.3); opacity: 1; position: relative; }
 .export-btn::before, .print-btn::before { height: 100%; width: 28px; height: 28px; content: ""; position: absolute; display: block; top: 5px; left: 8px; background-position: center; background-size: 28px 28px; background-repeat: no-repeat; } .print-btn::before {
   background-image: url(../img/print.svg);
 }
@@ -174,11 +176,11 @@ canvas { display: block; width: 100%; border-radius: 8px; margin-top: 24px; }
   html { font-size: 70%; }
   #input_area01 { margin-top: 0; }
 .app{display: block; position: relative; padding: 0; margin: 0; }
-.split_left{width: 50vw; height: 100dvh; position: fixed;  top: 0; left: 0; z-index: 1; padding: 134px 34px 100px 34px;}
+.split_left{width: 50vw; height: 100dvh; position: fixed;  top: 0; left: 0; z-index: 1; padding: calc(72px + var(--safe-top)) 34px calc(72px + var(--safe-bottom)) 34px;}
 .spit_right{top:0; right: 0; padding: 0; z-index: 0; padding: 34px 34px 0 50vw;  }
 #input_area01, #input_area02, #input_area03{padding: 24px 32px;}
 
-header {padding: 16px clamp(0px, (100vw - 780px) * 999, calc(50% - 390px)) 0; align-items: center; justify-content: center; }
+header {padding: calc(12px + var(--safe-top)) clamp(0px, (100vw - 780px) * 999, calc(50% - 390px)) 8px; align-items: center; justify-content: center; height: auto; }
 h1 { font-size: 2rem; }
 h1 span {font-size: 0.7em; padding: 0.2em 1em; border-radius: 1em; }
 
@@ -188,7 +190,7 @@ h1 span {font-size: 0.7em; padding: 0.2em 1em; border-radius: 1em; }
 
 .modal { position: relative; background: #fff; border-radius: 16px; padding: 20px 10px; width: 92%; max-width: 420px; max-height: 90vh; overflow-y: auto; }
 
-footer { padding: 16px clamp(0px, (100vw - 780px) * 999, calc(50% - 390px)) 0; }
-footer small { padding-bottom: 16px; }
+footer { padding: 12px clamp(0px, (100vw - 780px) * 999, calc(50% - 390px)) calc(8px + var(--safe-bottom)); }
+footer small { padding-bottom: 4px; }
 .cal-wrap::before { bottom: -5vw; right: -30px; width: 15vw; height: 15vw;  opacity: 0.6; }
 }

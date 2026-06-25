@@ -2,7 +2,7 @@
 
 body { background: var(--surf); color: var(--tx); font-family: var(--font, "Noto Sans JP", sans-serif); transition: background 0.3s; }
 
-.how-page { width: 100%; max-width: 720px; margin: 0 auto; padding: 16px 16px 120px; background: transparent; color: inherit; font-family: inherit; min-height: calc(100vh - 100px); box-sizing: border-box; }
+.how-page { width: 100%; max-width: 720px; margin: 0 auto; padding: 12px 16px calc(64px + env(safe-area-inset-bottom, 0px)); background: transparent; color: inherit; font-family: inherit; min-height: auto; box-sizing: border-box; }
 
 .how-lead { font-size: 1.2rem; line-height: 1.75; color: var(--txs); margin-bottom: 24px; }
 
@@ -47,19 +47,19 @@ body { background: var(--surf); color: var(--tx); font-family: var(--font, "Noto
 
 .how-flow-item em { display: inline-block; font-style: normal; font-size: 1.4rem; font-weight: 700; color: var(--acc); margin-right: 0.5em; }
 
-.how-header-sub { width: 100%; text-align: center; font-size: 1.2rem; color: var(--txs); margin: 4px 16px 0; }
+.how-header-sub { width: 100%; text-align: center; font-size: 1.2rem; color: var(--txs); margin: 0 8px; }
 .how-back { display: inline-block; margin-top: 8px; font-size: 1.2rem; color: var(--acc); text-decoration: none; }
 
 .how-back:hover { text-decoration: underline; }
-footer .how-footer-link { display: block; width: 100%; text-align: center; font-size: 1.2rem; margin: 8px 0; }
+footer .how-footer-link { display: block; width: 100%; text-align: center; font-size: 1.2rem; margin: 4px 0; }
 
 footer .how-footer-link a { color: var(--acc); text-decoration: none; }
 
 footer .how-footer-link a:hover { text-decoration: underline; }
 
 @media screen and (min-width: 780px) {
-  .how-page { max-width: 720px; padding: 24px 32px 80px; }
-  header { height: auto; min-height: 80px; padding-top: 24px; align-items: center; }
+  .how-page { max-width: 720px; padding: 24px 32px calc(48px + env(safe-area-inset-bottom, 0px)); }
+  header { height: auto; min-height: auto; padding-top: calc(12px + env(safe-area-inset-top, 0px)); align-items: center; }
   h1 { font-size: 2rem; }
   .how-flow-item { flex: 1 1 140px; max-width: 160px; padding: 8px; line-height: 1.4; margin: 0; }
    .how-flow-item span{display:inline; width: auto; margin: 0; text-align: center;}
