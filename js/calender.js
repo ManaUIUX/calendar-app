@@ -792,18 +792,60 @@ function drawCalendarToCanvas(canvas, W, H, tszBase) {
   });
 }
 
+let exportBlobUrl = null;
+
+function setExportImgFromCanvas(canvas, exportImg) {
+  if (exportBlobUrl) {
+    URL.revokeObjectURL(exportBlobUrl);
+    exportBlobUrl = null;
+  }
+  if (typeof canvas.toBlob === "function") {
+    canvas.toBlob(
+      (blob) => {
+        if (blob) {
+          exportBlobUrl = URL.createObjectURL(blob);
+          exportImg.src = exportBlobUrl;
+          exportImg.alt = "生成されたカレンダー画像";
+          return;
+        }
+        exportImg.src = canvas.toDataURL("image/png");
+        exportImg.alt = "生成されたカレンダー画像";
+      },
+      "image/png",
+      1,
+    );
+    return;
+  }
+  exportImg.src = canvas.toDataURL("image/png");
+  exportImg.alt = "生成されたカレンダー画像";
+}
+
 function closeModal() {
   document.getElementById("modalBg").classList.remove("open");
+  document.body.style.overflow = "";
 }
 
 function exportImage() {
-  const sizes = { story: [1080, 1920], feed: [1080, 1350], sq: [1080, 1080] };
-  const [W, H] = sizes[S.imgSize];
-  const tszBase = S.imgSize === "story" ? 166 : 137;
-  const canvas = document.createElement("canvas");
-  drawCalendarToCanvas(canvas, W, H, tszBase);
-  document.getElementById("exportImg").src = canvas.toDataURL("image/png");
-  document.getElementById("modalBg").classList.add("open");
+  const modalBg = document.getElementById("modalBg");
+  const exportImg = document.getElementById("exportImg");
+  modalBg.classList.add("open");
+  document.body.style.overflow = "hidden";
+  exportImg.removeAttribute("src");
+  exportImg.alt = "画像を生成しています…";
+
+  requestAnimationFrame(() => {
+    try {
+      const sizes = { story: [1080, 1920], feed: [1080, 1350], sq: [1080, 1080] };
+      const [W, H] = sizes[S.imgSize];
+      const tszBase = S.imgSize === "story" ? 166 : 137;
+      const canvas = document.createElement("canvas");
+      drawCalendarToCanvas(canvas, W, H, tszBase);
+      setExportImgFromCanvas(canvas, exportImg);
+    } catch (err) {
+      closeModal();
+      alert("画像の生成に失敗しました。時間をおいて再度お試しください。");
+    }
+  });
 }
 
 function printCalendar() {
