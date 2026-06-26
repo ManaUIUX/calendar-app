@@ -802,6 +802,7 @@ function exportImage() {
   const tszBase = S.imgSize === "story" ? 166 : 137;
   const canvas = document.getElementById("exportCanvas");
   drawCalendarToCanvas(canvas, W, H, tszBase);
+  document.getElementById("exportImg").src = canvas.toDataURL("image/png");
   document.getElementById("modalBg").classList.add("open");
 }
 

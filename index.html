@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>
       Instagram用営業日カレンダーを秒速で作成｜店舗・教室向け無料Webアプリ
     </title>
@@ -268,7 +268,12 @@
           ×
         </button>
         <h3>📸 画像生成完了！！</h3>
-        <canvas id="exportCanvas"></canvas>
+        <canvas id="exportCanvas" hidden aria-hidden="true"></canvas>
+        <img
+          id="exportImg"
+          class="export-img"
+          alt="生成されたカレンダー画像"
+        />
 
         <div class="modal-hint">
           <b>📱 iPhone / iPad</b>：画像を<b>長押し</b>→「写真に保存」<br />

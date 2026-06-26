@@ -170,6 +170,7 @@ footer small { display: block; width: 100%; padding-bottom: 4px; text-align: cen
 .modal-hint b { color: var(--tx); }
 .modal-close { width: 100%; padding: 10px; border-radius: 10px; background: var(--gradient-btn); color: #222; border: none; font-size: 1.4rem; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 10px; box-shadow: 0 1px 4px rgba(3, 3, 3, 0.3); }
 canvas { display: block; width: 100%; border-radius: 8px; margin-top: 24px; }
+.export-img { display: block; width: 100%; height: auto; border-radius: 8px; margin-top: 24px; -webkit-touch-callout: default; user-select: none; }
 
 
 @media screen and (min-width: 1024px) and (orientation: landscape) {
