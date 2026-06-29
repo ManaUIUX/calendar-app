@@ -789,34 +789,76 @@ function drawCalendarToCanvas(canvas, W, H, tszBase) {
 
 let exportBlobUrl = null;
 let printBlobUrl = null;
+let printReadyBlobUrl = null;
 
 const PRINT_A4_W_MM = 210;
 const PRINT_A4_H_MM = 297;
-const PRINT_MARGIN_MM = 14;
-const IOS_PRINT_FUDGE = 0.94;
+const PX_PER_MM = 96 / 25.4;
 
-function fitPrintImageLayout(img) {
-  const pxPerMm = 96 / 25.4;
-  const maxW =
-    (PRINT_A4_W_MM - PRINT_MARGIN_MM * 2) * pxPerMm * IOS_PRINT_FUDGE;
-  const maxH =
-    (PRINT_A4_H_MM - PRINT_MARGIN_MM * 2) * pxPerMm * IOS_PRINT_FUDGE;
-  const ratio = img.naturalWidth / img.naturalHeight;
-  let w = maxW;
-  let h = w / ratio;
-  if (h > maxH) {
-    h = maxH;
-    w = h * ratio;
+function getPrintLayoutOptions() {
+  if (shouldUseIframePrint()) {
+    return { marginMm: 26, pageScale: 0.72 };
   }
-  w = Math.round(w);
-  h = Math.round(h);
-  img.width = w;
-  img.height = h;
-  img.style.display = "block";
-  img.style.width = `${w}px`;
-  img.style.height = `${h}px`;
-  img.style.margin = "0 auto";
-  img.style.objectFit = "contain";
+  return { marginMm: 14, pageScale: 0.88 };
+}
+
+function createPrintReadyImageSrc(src) {
+  const { marginMm, pageScale } = getPrintLayoutOptions();
+
+  return new Promise((resolve, reject) => {
+    const tmp = new Image();
+    tmp.onerror = () => reject(new Error("print image load failed"));
+    tmp.onload = () => {
+      const pageW = Math.round(PRINT_A4_W_MM * PX_PER_MM * pageScale);
+      const pageH = Math.round(PRINT_A4_H_MM * PX_PER_MM * pageScale);
+      const margin = Math.round(marginMm * PX_PER_MM * pageScale);
+      const innerW = pageW - margin * 2;
+      const innerH = pageH - margin * 2;
+      const ratio = tmp.naturalWidth / tmp.naturalHeight;
+
+      let iw = innerW;
+      let ih = iw / ratio;
+      if (ih > innerH) {
+        ih = innerH;
+        iw = ih * ratio;
+      }
+      iw = Math.round(iw);
+      ih = Math.round(ih);
+      const ox = margin + Math.round((innerW - iw) / 2);
+      const oy = margin + Math.round((innerH - ih) / 2);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = pageW;
+      canvas.height = pageH;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, pageW, pageH);
+      ctx.drawImage(tmp, ox, oy, iw, ih);
+
+      const finish = (readySrc) => {
+        resolve({ src: readySrc, w: pageW, h: pageH });
+      };
+
+      if (typeof canvas.toBlob === "function") {
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              if (printReadyBlobUrl) URL.revokeObjectURL(printReadyBlobUrl);
+              printReadyBlobUrl = URL.createObjectURL(blob);
+              finish(printReadyBlobUrl);
+              return;
+            }
+            finish(canvas.toDataURL("image/jpeg", 0.92));
+          },
+          "image/jpeg",
+          0.92,
+        );
+        return;
+      }
+      finish(canvas.toDataURL("image/jpeg", 0.92));
+    };
+    tmp.src = src;
+  });
 }
 
 function getPrintCanvasSize() {
@@ -835,7 +877,7 @@ function shouldUseIframePrint() {
   );
 }
 
-function printViaIframe(src) {
+function printViaIframe(src, w, h) {
   const iframe = document.createElement("iframe");
   iframe.setAttribute(
     "style",
@@ -853,21 +895,18 @@ function printViaIframe(src) {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   @page { size: A4 portrait; margin: 0; }
   html, body {
-    width: 210mm;
-    height: 297mm;
-    max-height: 297mm;
+    width: ${w}px;
+    height: ${h}px;
+    max-width: ${w}px;
+    max-height: ${h}px;
     overflow: hidden;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    page-break-after: avoid;
-  }
   img {
     display: block;
+    width: ${w}px;
+    height: ${h}px;
     page-break-before: avoid;
     page-break-after: avoid;
     page-break-inside: avoid;
@@ -877,7 +916,7 @@ function printViaIframe(src) {
 </style>
 </head>
 <body>
-<img id="p" alt="カレンダー印刷用画像">
+<img id="p" width="${w}" height="${h}" alt="カレンダー印刷用画像">
 </body>
 </html>`);
   doc.close();
@@ -906,7 +945,6 @@ function printViaIframe(src) {
   const onReady = () => {
     if (ready) return;
     ready = true;
-    fitPrintImageLayout(img);
     runPrint();
   };
   img.onload = onReady;
@@ -915,32 +953,41 @@ function printViaIframe(src) {
 }
 
 function setPrintImgAndPrint(src) {
-  if (shouldUseIframePrint()) {
-    printViaIframe(src);
-    return;
-  }
+  createPrintReadyImageSrc(src)
+    .then(({ src: readySrc, w, h }) => {
+      if (shouldUseIframePrint()) {
+        printViaIframe(readySrc, w, h);
+        return;
+      }
 
-  const img = document.getElementById("printImg");
-  const runPrint = () => {
-    requestAnimationFrame(() => {
-      setTimeout(() => window.print(), 150);
+      const img = document.getElementById("printImg");
+      const runPrint = () => {
+        requestAnimationFrame(() => {
+          setTimeout(() => window.print(), 150);
+        });
+      };
+      const done = () => {
+        img.onload = null;
+        img.width = w;
+        img.height = h;
+        img.style.width = `${w}px`;
+        img.style.height = `${h}px`;
+        if (typeof img.decode === "function") {
+          img.decode().then(runPrint).catch(runPrint);
+        } else {
+          runPrint();
+        }
+      };
+      img.onerror = () => {
+        alert("印刷用画像の生成に失敗しました。時間をおいて再度お試しください。");
+      };
+      img.onload = done;
+      img.src = readySrc;
+      if (img.complete && img.naturalWidth > 0) done();
+    })
+    .catch(() => {
+      alert("印刷用画像の生成に失敗しました。時間をおいて再度お試しください。");
     });
-  };
-  const done = () => {
-    img.onload = null;
-    fitPrintImageLayout(img);
-    if (typeof img.decode === "function") {
-      img.decode().then(runPrint).catch(runPrint);
-    } else {
-      runPrint();
-    }
-  };
-  img.onerror = () => {
-    alert("印刷用画像の生成に失敗しました。時間をおいて再度お試しください。");
-  };
-  img.onload = done;
-  img.src = src;
-  if (img.complete && img.naturalWidth > 0) done();
 }
 
 function setExportImgFromCanvas(canvas, exportImg) {

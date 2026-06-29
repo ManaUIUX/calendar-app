@@ -2,7 +2,10 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>
       Instagram用営業日カレンダーを秒速で作成｜店舗・教室向け無料Webアプリ
     </title>
@@ -81,7 +84,7 @@
 
   <body>
     <header>
-      <h1><span>秒速で完成!</span>営業日カレンダー</h1>
+      <h1>営業日カレンダー</h1>
       <p class="current-sel">
         <img
           class="icon-pencil"
@@ -90,7 +93,7 @@
           width="24"
           height="24"
         />
-        選択されている入力内容：
+        入力内容：
         <span class="sel-dot" id="selDot"></span>
         <span id="selText">定休日</span>
       </p>
@@ -119,11 +122,10 @@
       <div class="spit_right">
         <section id="input_area01">
           <p class="howbtn">
-            <span class="howbtn-icon">?</span
-            ><a href="how.html">使い方について</a>
+            <span class="howbtn-icon">? </span><a href="how.html">使い方</a>
             <span class="howbtn-sep" aria-hidden="true">｜</span
-            ><span class="howbtn-icon">i</span>
-            <a href="guideline.html">ご利用にあたって</a>
+            ><span class="howbtn-icon">i</span
+            ><a href="guideline.html">ご利用について</a>
           </p>
           <h2><span>入力内容</span>入力内容を確認後、日付をタップ</h2>
           <!-- ITEM SELECTION -->
@@ -144,16 +146,16 @@
           </article>
         </section>
         <section id="input_area02">
-          <h2><span>一括内容</span>曜日を選択後、「入力内容」を一括適用</h2>
+          <h2><span>曜日一括入力</span>曜日を選択後、「入力内容」を一括適用</h2>
           <!-- BULK -->
           <div class="bulk-section">
             <div class="bulk-dow-row" id="bulkRow"></div>
             <div class="bulk-actions">
-              <button class="bulk-apply-btn" onclick="applyBulk()">
-                ▶ 一括適用
-              </button>
               <button class="bulk-clear-btn" onclick="clearBulk()">
                 ✕ 選択曜日をクリア
+              </button>
+              <button class="bulk-apply-btn" onclick="applyBulk()">
+                ▶ 曜日に一括適用
               </button>
             </div>
           </div>
@@ -244,8 +246,12 @@
       </div>
     </main>
     <footer>
-      <button type="button" class="print-btn" onclick="printCalendar()">印刷・PDF</button>
-      <button type="button" class="export-btn" onclick="exportImage()">画像生成</button>
+      <button type="button" class="print-btn" onclick="printCalendar()">
+        印刷・PDF
+      </button>
+      <button type="button" class="export-btn" onclick="exportImage()">
+        画像生成
+      </button>
       <small
         >&copy; 2026
         <a href="https://www.instagram.com/mana_monozukuri/" target="_blank"
@@ -268,11 +274,7 @@
           ×
         </button>
         <h3>📸 画像生成完了！！</h3>
-        <img
-          id="exportImg"
-          class="export-img"
-          alt="生成されたカレンダー画像"
-        />
+        <img id="exportImg" class="export-img" alt="生成されたカレンダー画像" />
 
         <div class="modal-hint">
           <b>📱 iPhone / iPad</b>：画像を<b>長押し</b>→「写真に保存」<br />
@@ -280,7 +282,7 @@
           <b>💻 PC</b>：画像を<b>右クリック</b>→「名前を付けて画像を保存」
         </div>
         <button type="button" class="modal-close" onclick="closeModal()">
-          × 閉じる
+          <span> × </span>閉じる
         </button>
       </div>
     </div>

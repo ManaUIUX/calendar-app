@@ -3,7 +3,6 @@
 body {
   background: var(--surf);
   color: var(--tx);
-  font-family: var(--font, "Noto Sans JP", sans-serif);
   transition: background 0.3s;
 }
 
@@ -20,14 +19,14 @@ body {
 }
 
 .guide-lead {
-  font-size: 1.3rem;
+  font-size: 1em;
   line-height: 1.8;
   color: var(--tx);
   margin-bottom: 8px;
 }
 
 .guide-lead-note {
-  font-size: 1.2rem;
+  font-size: 1em;
   line-height: 1.75;
   color: var(--txs);
   margin-bottom: 24px;
@@ -48,7 +47,7 @@ body {
   border-radius: 10px;
   background: var(--tx);
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 0.9em;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 1px 4px rgba(3, 3, 3, 0.3);
@@ -64,22 +63,20 @@ body {
   padding: 16px;
   background-color: var(--bg_base, #fff);
   border: 2px solid var(--bdr);
-  border-radius: 8px;
+  border-radius: 5px;
   filter: drop-shadow(0 1px 3px rgba(3, 3, 3, 0.15));
   width: 100%;
   box-sizing: border-box;
+  font-size: 0.9em;
 }
 
 .guide-section:last-of-type {
   margin-bottom: 0;
 }
 
-.guide-section h2 {font-size: 1.4rem;
-  margin-bottom: 12px;
-}
+.guide-section h2 { font-size:1em; margin-bottom: 12px; font-weight: bold; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
 
 .guide-section p {
-  font-size: 1.3rem;
   line-height: 1.75;
   color: var(--tx);
   margin-bottom: 12px;
@@ -92,7 +89,6 @@ body {
 .guide-list {
   margin: 8px 0 0;
   padding-left: 1.4em;
-  font-size: 1.2rem;
   line-height: 1.7;
   color: var(--txs);
 }
@@ -109,8 +105,7 @@ body {
   margin-top: 12px;
   padding: 10px 12px;
   background: var(--surf);
-  border-radius: 8px;
-  font-size: 1.2rem;
+  border-radius: 5px;
   line-height: 1.65;
   color: var(--txs);
 }
@@ -128,9 +123,9 @@ body {
 .guide-header-sub {
   width: 100%;
   text-align: center;
-  font-size: 1.2rem;
   color: var(--txs);
   margin: 0 8px;
+  font-size: 0.9em;
 }
 
 .guide-footer-nav {
@@ -140,7 +135,6 @@ body {
   gap: 8px 16px;
   width: 100%;
   margin: 4px 0;
-  font-size: 1.2rem;
 }
 
 .guide-footer-nav a {
@@ -166,6 +160,6 @@ body {
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2em;
   }
 }
