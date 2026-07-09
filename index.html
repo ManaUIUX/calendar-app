@@ -26,11 +26,11 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
-      content="https://aquadesignmana.github.io/calendar-app/"
+      content="https://manauiux.github.io/calendar-app/"
     />
     <meta
       property="og:image"
-      content="https://aquadesignmana.github.io/calendar-app/img/ogp-image.jpg"
+      content="https://manauiux.github.io/calendar-app/img/ogp-image.jpg"
     />
 
     <meta
@@ -48,14 +48,11 @@
     />
     <meta
       name="twitter:image"
-      content="https://aquadesignmana.github.io/calendar-app/img/ogp-image.jpg"
+      content="https://manauiux.github.io/calendar-app/img/ogp-image.jpg"
     />
     <meta name="robots" content="index,follow,max-image-preview:large" />
 
-    <link
-      rel="canonical"
-      href="https://aquadesignmana.github.io/calendar-app/"
-    />
+    <link rel="canonical" href="https://manauiux.github.io/calendar-app/" />
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="favicon.ico" />
@@ -68,11 +65,11 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "インスタ用営業日カレンダー作成アプリ",
-        "url": "https://aquadesignmana.github.io/calendar-app/",
+        "url": "https://manauiux.github.io/calendar-app/",
         "description": "店舗・お教室・イベント主催者向け。Instagram投稿用の営業日カレンダー画像を秒速で作成できる無料Webアプリです。ストーリーズ・フィード用サイズにも対応。印刷用データとしても利用できます。",
         "applicationCategory": "Productivity",
         "operatingSystem": "All",
-        "image": "https://aquadesignmana.github.io/calendar-app/img/ogp-image.jpg",
+        "image": "https://manauiux.github.io/calendar-app/img/ogp-image.jpg",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -136,11 +133,13 @@
               class="custom-input"
               id="customInput"
               type="text"
-              placeholder="表示するテキストを入力（最大12文字）"
-              maxlength="12"
+              placeholder="表示するテキストを入力（最大6文字）"
+              maxlength="6"
             />
             <h3 class="sec-label marktype">マーク</h3>
             <div class="mark-row" id="markRow"></div>
+            <h3 class="sec-label markcolor">マーク色</h3>
+            <div class="dot-row" id="dotRow"></div>
           </article>
         </section>
         <section id="input_area02">
@@ -285,7 +284,6 @@
       </div>
     </div>
 
-    <script src="js/mark-icons.js" defer></script>
     <script src="js/theme.js" defer></script>
     <script src="js/calender.js" defer></script>
   </body>
